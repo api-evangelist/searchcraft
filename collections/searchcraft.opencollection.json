@@ -1,0 +1,887 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Authorization",
+        "value": "{{searchcraftKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Healthcheck",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the health status of the server instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/healthcheck"
+          },
+          "docs": "Returns the health status of the server instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of all indexes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index"
+          },
+          "docs": "Returns a list of all indexes."
+        },
+        {
+          "info": {
+            "name": "Creates a new index with a schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new index with a schema."
+        },
+        {
+          "info": {
+            "name": "Returns document counts for every index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/stats"
+          },
+          "docs": "Returns document counts for every index."
+        },
+        {
+          "info": {
+            "name": "Returns the schema for a specific index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the schema for a specific index."
+        },
+        {
+          "info": {
+            "name": "Replaces the entire configuration of an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the entire configuration of an index."
+        },
+        {
+          "info": {
+            "name": "Applies a partial configuration update to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a partial configuration update to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes an index and all of its documents.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an index and all of its documents."
+        },
+        {
+          "info": {
+            "name": "Returns metadata and document counts for a specific index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stats",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata and document counts for a specific index."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds one or several documents to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or several documents to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes documents matching a field term.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes documents matching a field term."
+        },
+        {
+          "info": {
+            "name": "Deletes all documents from an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/all",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all documents from an index."
+        },
+        {
+          "info": {
+            "name": "Deletes documents matching a query condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/query",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes documents matching a query condition."
+        },
+        {
+          "info": {
+            "name": "Retrieves a single document by its internal id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/:document_id",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single document by its internal id."
+        },
+        {
+          "info": {
+            "name": "Deletes a specific document by its internal id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/:document_id",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific document by its internal id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Commits the open write transaction for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/commit",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Commits the open write transaction for an index."
+        },
+        {
+          "info": {
+            "name": "Rolls back the open write transaction for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/rollback",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rolls back the open write transaction for an index."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns search results that match the query criteria.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/search",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns search results that match the query criteria."
+        },
+        {
+          "info": {
+            "name": "Returns search results across all indexes in a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name/search",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns search results across all indexes in a federation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Synonyms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the synonyms configured for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/synonyms",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the synonyms configured for an index."
+        },
+        {
+          "info": {
+            "name": "Adds synonyms to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/synonyms",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds synonyms to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes specific synonyms from an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/synonyms",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes specific synonyms from an index."
+        },
+        {
+          "info": {
+            "name": "Deletes all synonyms from an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/synonyms/all",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all synonyms from an index."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stopwords",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the custom stopwords configured for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stopwords",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the custom stopwords configured for an index."
+        },
+        {
+          "info": {
+            "name": "Adds custom stopwords to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stopwords",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds custom stopwords to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes specific custom stopwords from an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stopwords",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes specific custom stopwords from an index."
+        },
+        {
+          "info": {
+            "name": "Deletes all custom stopwords from an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stopwords/all",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes all custom stopwords from an index."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Federation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of all federations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation"
+          },
+          "docs": "Returns a list of all federations."
+        },
+        {
+          "info": {
+            "name": "Creates a new federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/federation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new federation."
+        },
+        {
+          "info": {
+            "name": "Returns the details of a specific federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific federation."
+        },
+        {
+          "info": {
+            "name": "Updates a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a federation."
+        },
+        {
+          "info": {
+            "name": "Deletes a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a federation."
+        },
+        {
+          "info": {
+            "name": "Returns statistics for a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name/stats",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns statistics for a federation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Measure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns whether the measurement system is enabled.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/status"
+          },
+          "docs": "Returns whether the measurement system is enabled."
+        },
+        {
+          "info": {
+            "name": "Records a single measurement event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/measure/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records a single measurement event."
+        },
+        {
+          "info": {
+            "name": "Records multiple measurement events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/measure/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records multiple measurement events."
+        },
+        {
+          "info": {
+            "name": "Returns summary analytics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/summary"
+          },
+          "docs": "Returns summary analytics."
+        },
+        {
+          "info": {
+            "name": "Returns conversion analytics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/conversion"
+          },
+          "docs": "Returns conversion analytics."
+        },
+        {
+          "info": {
+            "name": "Returns usage metrics for billing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/usage"
+          },
+          "docs": "Returns usage metrics for billing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all access keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/auth/key"
+          },
+          "docs": "Lists all access keys."
+        },
+        {
+          "info": {
+            "name": "Creates a new access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/auth/key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new access key."
+        },
+        {
+          "info": {
+            "name": "Deletes all access keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/auth/key"
+          },
+          "docs": "Deletes all access keys."
+        },
+        {
+          "info": {
+            "name": "Retrieves the details of a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific access key."
+        },
+        {
+          "info": {
+            "name": "Updates a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a specific access key."
+        },
+        {
+          "info": {
+            "name": "Deletes a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific access key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Searchcraft
+providerId: searchcraft
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Search
+- Search as a Service
+- Full Text Search
+- Indexing
+- Developer Tools
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Searchcraft does not publish explicit numeric API rate limits in its public
+  documentation. Searchcraft Cloud is a managed service that handles
+  provisioning, auto-scaling, and uptime behind the scenes; throughput is
+  governed by the provisioned cluster and account plan rather than documented
+  per-endpoint request ceilings. The Measure API exposes usage metrics intended
+  for search query tracking and billing. Self-hosted Searchcraft Core throughput
+  is bounded by the operator's own infrastructure. Specific limits are not
+  reconciled in this artifact.
+notes: >-
+  No public rate-limit table was documented at the created date. Verify any
+  per-account or per-cluster limits in the Searchcraft Cloud console and the
+  /measure/dashboard/usage endpoint on reconciliation.
+sources:
+- https://docs.searchcraft.io/
+- https://docs.searchcraft.io/api/measure/
+- https://www.searchcraft.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: Search Requests
+  scope: cluster
+  metric: requests
+  limit: see provider documentation
+  notes: Governed by provisioned Searchcraft Cloud cluster capacity and plan; no public numeric limit documented.
+- name: Ingest Requests
+  scope: cluster
+  metric: requests
+  limit: see provider documentation
+  notes: Batch multiple documents per request for large-scale ingestion; no public numeric limit documented.
+- name: Usage Metering
+  scope: account
+  metric: queries
+  limit: tracked via Measure
+  notes: The /measure/dashboard/usage endpoint returns usage metrics for search query tracking and billing.
+policies:
+- name: Managed Scaling
+  description: Searchcraft Cloud auto-scales provisioned clusters; throughput scales with the plan and cluster size rather than fixed published request ceilings.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor any 429 / Retry-After responses.
+- name: Batch Ingestion
+  description: Documentation recommends batching multiple documents into fewer requests rather than submitting documents individually.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

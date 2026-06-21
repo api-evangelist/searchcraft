@@ -1,0 +1,106 @@
+aid: searchcraft
+name: Searchcraft
+review:
+  question: Does Searchcraft expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per updated API Evangelist scope (2026-05-29), HTTP Server-Sent Events
+    (SSE) is in-scope for AsyncAPI modeling. Searchcraft documents one SSE
+    surface: POST /index/:index/search/summary streams an AI-generated
+    summary of search results over server-sent events. No AsyncAPI document
+    was authored in this pass; the SSE summary endpoint is a candidate for a
+    future AsyncAPI artifact. No WebSocket surface was modeled because none is
+    documented.
+findings:
+  summary: |
+    Searchcraft does not publish a documented public WebSocket API. The
+    Searchcraft engine exposes a REST (HTTPS) API for index management,
+    document ingestion, search, federated search, synonyms, stopwords,
+    transactions, measurement, and access-key management. The only streaming
+    surface documented is HTTP Server-Sent Events (SSE) on the AI search
+    summary endpoint (POST /index/:index/search/summary). SSE is a one-way
+    HTTP streaming transport and is not WebSocket. No realtime, bidirectional
+    WebSocket (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://your-cluster.searchcraft.io
+      documented: true
+    - protocol: SSE
+      scheme: https
+      note: Server-Sent Events delivered by POST /index/:index/search/summary streaming an AI-generated summary. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Searchcraft API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://your-cluster.searchcraft.io/healthcheck
+    - GET    https://your-cluster.searchcraft.io/index
+    - POST   https://your-cluster.searchcraft.io/index
+    - GET    https://your-cluster.searchcraft.io/index/stats
+    - GET    https://your-cluster.searchcraft.io/index/{index}
+    - PUT    https://your-cluster.searchcraft.io/index/{index}
+    - PATCH  https://your-cluster.searchcraft.io/index/{index}
+    - DELETE https://your-cluster.searchcraft.io/index/{index}
+    - GET    https://your-cluster.searchcraft.io/index/{index}/stats
+    - POST   https://your-cluster.searchcraft.io/index/{index}/documents
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/documents
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/documents/all
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/documents/query
+    - GET    https://your-cluster.searchcraft.io/index/{index}/documents/{document_id}
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/documents/{document_id}
+    - POST   https://your-cluster.searchcraft.io/index/{index}/commit
+    - POST   https://your-cluster.searchcraft.io/index/{index}/rollback
+    - POST   https://your-cluster.searchcraft.io/index/{index}/search
+    - GET    https://your-cluster.searchcraft.io/index/{index}/synonyms
+    - POST   https://your-cluster.searchcraft.io/index/{index}/synonyms
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/synonyms
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/synonyms/all
+    - GET    https://your-cluster.searchcraft.io/index/{index}/stopwords
+    - POST   https://your-cluster.searchcraft.io/index/{index}/stopwords
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/stopwords
+    - DELETE https://your-cluster.searchcraft.io/index/{index}/stopwords/all
+    - GET    https://your-cluster.searchcraft.io/federation
+    - POST   https://your-cluster.searchcraft.io/federation
+    - GET    https://your-cluster.searchcraft.io/federation/{federation_name}
+    - PUT    https://your-cluster.searchcraft.io/federation/{federation_name}
+    - DELETE https://your-cluster.searchcraft.io/federation/{federation_name}
+    - GET    https://your-cluster.searchcraft.io/federation/{federation_name}/stats
+    - POST   https://your-cluster.searchcraft.io/federation/{federation_name}/search
+    - GET    https://your-cluster.searchcraft.io/measure/status
+    - POST   https://your-cluster.searchcraft.io/measure/event
+    - POST   https://your-cluster.searchcraft.io/measure/batch
+    - GET    https://your-cluster.searchcraft.io/measure/dashboard/summary
+    - GET    https://your-cluster.searchcraft.io/measure/dashboard/conversion
+    - GET    https://your-cluster.searchcraft.io/measure/dashboard/usage
+    - GET    https://your-cluster.searchcraft.io/auth/key
+    - POST   https://your-cluster.searchcraft.io/auth/key
+    - GET    https://your-cluster.searchcraft.io/auth/key/{key}
+    - POST   https://your-cluster.searchcraft.io/auth/key/{key}
+    - DELETE https://your-cluster.searchcraft.io/auth/key/{key}
+sources:
+  - url: https://docs.searchcraft.io/
+    type: Documentation
+    note: API reference lists REST sections for Authentication, Healthcheck, Federation, Index, Document, Measure, Search, Stopwords, Synonyms, and Transactions; no WebSocket mentioned.
+  - url: https://docs.searchcraft.io/api/search/
+    type: APIReference
+    note: Search and federated search are POST REST endpoints; the search/summary endpoint streams over SSE, not WebSocket.
+  - url: https://github.com/searchcraft-inc/searchcraft-mcp-server
+    type: SourceCode
+    note: Official Searchcraft MCP server wraps the REST endpoints over HTTPS with an Authorization header key; no WebSocket transport.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. One SSE surface (the AI search
+    summary endpoint) is documented and noted as a future AsyncAPI candidate
+    under the 2026-05-29 SSE scope, but no AsyncAPI document was authored in
+    this pass. SSE is documented explicitly so it is never misrepresented as
+    WebSocket.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

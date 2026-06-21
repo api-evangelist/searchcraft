@@ -1,0 +1,1555 @@
+{
+  "item": [
+    {
+      "id": "d4341b89-632f-4cf3-b538-9b1ffb982fc4",
+      "name": "Healthcheck",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e197f903-f01f-4002-bd4f-e316e560eebc",
+          "name": "Returns the health status of the server instance.",
+          "request": {
+            "name": "Returns the health status of the server instance.",
+            "url": {
+              "path": [
+                "healthcheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "21aafaff-76a7-4a9e-8ff5-c7223d5ca118",
+      "name": "Indexes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80e0f0a9-006e-47fd-8270-0fdef1525d78",
+          "name": "Returns a list of all indexes.",
+          "request": {
+            "name": "Returns a list of all indexes.",
+            "url": {
+              "path": [
+                "index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "0932519a-27b0-453e-8c67-480ea8a9bd22",
+          "name": "Creates a new index with a schema.",
+          "request": {
+            "name": "Creates a new index with a schema.",
+            "url": {
+              "path": [
+                "index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "ddb7e6ee-4862-4d12-ab45-fa1979af03c6",
+          "name": "Returns document counts for every index.",
+          "request": {
+            "name": "Returns document counts for every index.",
+            "url": {
+              "path": [
+                "index",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "64f1d05a-64a6-4904-a80f-0fbea48c184b",
+          "name": "Returns the schema for a specific index.",
+          "request": {
+            "name": "Returns the schema for a specific index.",
+            "url": {
+              "path": [
+                "index",
+                ":index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "8bd7ce27-901e-4738-a78f-a0b301cfbc31",
+          "name": "Replaces the entire configuration of an index.",
+          "request": {
+            "name": "Replaces the entire configuration of an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "0b5f105d-8673-4c60-8e51-f7ff0d940e92",
+          "name": "Applies a partial configuration update to an index.",
+          "request": {
+            "name": "Applies a partial configuration update to an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "4c0054d4-7fdb-4e14-8392-c10b7a5b4106",
+          "name": "Deletes an index and all of its documents.",
+          "request": {
+            "name": "Deletes an index and all of its documents.",
+            "url": {
+              "path": [
+                "index",
+                ":index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "95a83790-7715-46da-bf2b-b839ec6c3d10",
+          "name": "Returns metadata and document counts for a specific index.",
+          "request": {
+            "name": "Returns metadata and document counts for a specific index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "5e53cfe8-dd0d-48a4-b01e-07b55fe8ca3c",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f64144fc-2d27-4c27-9542-358b56927789",
+          "name": "Adds one or several documents to an index.",
+          "request": {
+            "name": "Adds one or several documents to an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "9663ca72-646b-405e-8d27-3b4b577e39fb",
+          "name": "Deletes documents matching a field term.",
+          "request": {
+            "name": "Deletes documents matching a field term.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "6f8d8aab-7c4e-453c-a3b5-b7821aceeb49",
+          "name": "Deletes all documents from an index.",
+          "request": {
+            "name": "Deletes all documents from an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "df59270b-4088-4007-8bc7-8271f150d75f",
+          "name": "Deletes documents matching a query condition.",
+          "request": {
+            "name": "Deletes documents matching a query condition.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "15311d72-d353-4a9c-aeb2-ed4c704a8451",
+          "name": "Retrieves a single document by its internal id.",
+          "request": {
+            "name": "Retrieves a single document by its internal id.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents",
+                ":document_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "document_id",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "c4f4d73e-1778-471b-881c-3b7d483c9333",
+          "name": "Deletes a specific document by its internal id.",
+          "request": {
+            "name": "Deletes a specific document by its internal id.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "documents",
+                ":document_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "document_id",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "3ecb957f-58b2-41f9-ae6e-0912a028bc06",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3fe3e8a4-a1d1-4097-b4c5-8865e90ad89a",
+          "name": "Commits the open write transaction for an index.",
+          "request": {
+            "name": "Commits the open write transaction for an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        },
+        {
+          "id": "21656847-43dc-462c-b224-4a5a913599cb",
+          "name": "Rolls back the open write transaction for an index.",
+          "request": {
+            "name": "Rolls back the open write transaction for an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "rollback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "46688e91-eba8-4487-9399-b22b0403bcc1",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e860bdb1-8aea-4c2b-beda-b4b45aac9002",
+          "name": "Returns search results that match the query criteria.",
+          "request": {
+            "name": "Returns search results that match the query criteria.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "00026f55-cfa5-4152-aad8-a1f231d87940",
+          "name": "Returns search results across all indexes in a federation.",
+          "request": {
+            "name": "Returns search results across all indexes in a federation.",
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "federation_name",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "01c5e0f1-04ce-49c8-a3f4-8e86ef3eb0d3",
+      "name": "Synonyms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e4d3b778-b646-4c67-8c84-732fcd393a3c",
+          "name": "Returns the synonyms configured for an index.",
+          "request": {
+            "name": "Returns the synonyms configured for an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "synonyms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "8e1bac86-745a-48c2-9326-480ce7650b46",
+          "name": "Adds synonyms to an index.",
+          "request": {
+            "name": "Adds synonyms to an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "synonyms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "18972ab1-6636-462a-866a-7c8a058f2c9f",
+          "name": "Deletes specific synonyms from an index.",
+          "request": {
+            "name": "Deletes specific synonyms from an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "synonyms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "8fe091d2-0283-45b6-ad5d-7f7148cf2ccd",
+          "name": "Deletes all synonyms from an index.",
+          "request": {
+            "name": "Deletes all synonyms from an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "synonyms",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "a97459cb-8bbb-4a92-8fd4-41c3868c1c3a",
+      "name": "Stopwords",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "154afb0b-6cef-45b2-9d57-d02cf4042f34",
+          "name": "Returns the custom stopwords configured for an index.",
+          "request": {
+            "name": "Returns the custom stopwords configured for an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "stopwords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "20ed2cf3-e648-41bf-9f99-7dda205eddf5",
+          "name": "Adds custom stopwords to an index.",
+          "request": {
+            "name": "Adds custom stopwords to an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "stopwords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "150472e3-33fb-4ffc-af8a-85c726128672",
+          "name": "Deletes specific custom stopwords from an index.",
+          "request": {
+            "name": "Deletes specific custom stopwords from an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "stopwords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "e0baca59-9adc-4b85-9ffd-7c6fcf528ee2",
+          "name": "Deletes all custom stopwords from an index.",
+          "request": {
+            "name": "Deletes all custom stopwords from an index.",
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "stopwords",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "index",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "9d9f1cd9-c2e9-469d-bd0b-7812870098b7",
+      "name": "Federation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3215c2f0-7b4f-497d-a71a-12426cc2ea4e",
+          "name": "Returns a list of all federations.",
+          "request": {
+            "name": "Returns a list of all federations.",
+            "url": {
+              "path": [
+                "federation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "8f67739f-d396-4031-87cd-d6fbb4cac692",
+          "name": "Creates a new federation.",
+          "request": {
+            "name": "Creates a new federation.",
+            "url": {
+              "path": [
+                "federation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "8a162b89-6f32-4002-96ac-a26d67f6eaaa",
+          "name": "Returns the details of a specific federation.",
+          "request": {
+            "name": "Returns the details of a specific federation.",
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "federation_name",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "3fe88805-a39e-47a6-8e4d-9592555ad473",
+          "name": "Updates a federation.",
+          "request": {
+            "name": "Updates a federation.",
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "federation_name",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "8086dc0f-b29f-465f-8a26-0e31fa977cc0",
+          "name": "Deletes a federation.",
+          "request": {
+            "name": "Deletes a federation.",
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "federation_name",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "7a245b74-b742-4377-a07f-8a2a9202c9d1",
+          "name": "Returns statistics for a federation.",
+          "request": {
+            "name": "Returns statistics for a federation.",
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "federation_name",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "f3b176f3-3abf-4333-8f79-4783654230b8",
+      "name": "Measure",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a1f45ba-9ac0-437c-bdb2-2d92de8f3b8d",
+          "name": "Returns whether the measurement system is enabled.",
+          "request": {
+            "name": "Returns whether the measurement system is enabled.",
+            "url": {
+              "path": [
+                "measure",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "5592e14d-dcc2-402b-8949-ddd65fca1b17",
+          "name": "Records a single measurement event.",
+          "request": {
+            "name": "Records a single measurement event.",
+            "url": {
+              "path": [
+                "measure",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "dc45498e-bb95-4cca-b7cb-3117b6114586",
+          "name": "Records multiple measurement events.",
+          "request": {
+            "name": "Records multiple measurement events.",
+            "url": {
+              "path": [
+                "measure",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f6b489da-d32d-4fe9-80dc-9f32152438ae",
+          "name": "Returns summary analytics.",
+          "request": {
+            "name": "Returns summary analytics.",
+            "url": {
+              "path": [
+                "measure",
+                "dashboard",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "180ba8c7-0557-45f8-9897-66764624970c",
+          "name": "Returns conversion analytics.",
+          "request": {
+            "name": "Returns conversion analytics.",
+            "url": {
+              "path": [
+                "measure",
+                "dashboard",
+                "conversion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "91b0015a-39bd-4d4a-becb-85150422f48c",
+          "name": "Returns usage metrics for billing.",
+          "request": {
+            "name": "Returns usage metrics for billing.",
+            "url": {
+              "path": [
+                "measure",
+                "dashboard",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "333e2c5a-00d6-427d-8a79-5d96701a1f0d",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0d3cdfd-2454-400d-ae21-576b1a2eb8cb",
+          "name": "Lists all access keys.",
+          "request": {
+            "name": "Lists all access keys.",
+            "url": {
+              "path": [
+                "auth",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "4d5f7015-dea4-43c6-a544-d57ef69f6356",
+          "name": "Creates a new access key.",
+          "request": {
+            "name": "Creates a new access key.",
+            "url": {
+              "path": [
+                "auth",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "37e26322-d179-4ecb-b808-aeb1b1eb51a1",
+          "name": "Deletes all access keys.",
+          "request": {
+            "name": "Deletes all access keys.",
+            "url": {
+              "path": [
+                "auth",
+                "key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "68325633-744b-47f8-9b93-7ef1a8ce9a87",
+          "name": "Retrieves the details of a specific access key.",
+          "request": {
+            "name": "Retrieves the details of a specific access key.",
+            "url": {
+              "path": [
+                "auth",
+                "key",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "key",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "f904bd6d-5bc4-4432-933d-c0ae633bd9d4",
+          "name": "Updates a specific access key.",
+          "request": {
+            "name": "Updates a specific access key.",
+            "url": {
+              "path": [
+                "auth",
+                "key",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "key",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "29be1c2c-7f90-490e-acae-4774d090d965",
+          "name": "Deletes a specific access key.",
+          "request": {
+            "name": "Deletes a specific access key.",
+            "url": {
+              "path": [
+                "auth",
+                "key",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "key",
+                  "value": "",
+                  "description": ""
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-cluster.searchcraft.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{searchcraftKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebfba237-a5ba-427f-ac97-12abbd39c7d7",
+    "name": "Searchcraft API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Searchcraft developer search engine. Authentication uses a tiered access key (read / ingest / admin) passed in the Authorization header.",
+      "type": "text/plain"
+    }
+  }
+}

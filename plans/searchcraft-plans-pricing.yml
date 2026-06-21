@@ -1,0 +1,106 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Searchcraft
+providerId: searchcraft
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Search
+- Search as a Service
+- Full Text Search
+- Indexing
+- Developer Tools
+- Plans
+description: >-
+  Searchcraft is offered as a managed cloud service (Searchcraft Cloud) and a
+  self-hosted engine (Searchcraft Core). Searchcraft Cloud is access-gated
+  behind account sign-up at vektron.searchcraft.io and an enterprise contact
+  form; public per-tier pricing (named plans, monthly prices, index/document or
+  request limits) is not published on a public pricing page as of the created
+  date. Searchcraft Core is a self-hosted engine distributed via Docker. The
+  plans below capture the publicly documented productization shape; specific
+  prices and quotas are not reconciled.
+notes: >-
+  No public searchcraft.io/pricing page was available at the created date;
+  pricing is obtained by signing up for Searchcraft Cloud or contacting sales.
+  Reconcile named tiers, prices, and quotas against the account console and any
+  future public pricing page.
+sources:
+- https://www.searchcraft.io/
+- https://www.searchcraft.io/enterprise-search-software
+- https://docs.searchcraft.io/
+plans:
+- id: searchcraft-cloud
+  name: Searchcraft Cloud
+  type: usage
+  description: >-
+    Fully managed search-as-a-service. Searchcraft handles provisioning,
+    auto-scaling, updates, security patches, and uptime. Account sign-up is
+    required; public per-tier prices and quotas are not reconciled.
+  entries:
+  - label: Managed Cloud Search
+    name: cloud
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: see Searchcraft Cloud account / contact sales
+    userMultiplied: false
+  elements:
+  - name: Indexes
+  - name: Document Ingest
+  - name: Search
+  - name: Federated Search
+  - name: Synonyms and Stopwords
+  - name: Measure Analytics
+- id: searchcraft-core
+  name: Searchcraft Core (Self-Hosted)
+  type: free
+  description: >-
+    Self-hosted Searchcraft engine deployed via Docker on your own
+    infrastructure (on-premise or private cloud). Infrastructure and operations
+    are managed by the customer.
+  entries:
+  - label: Self-Hosted Engine
+    name: core
+    type: free
+    metric: deployment
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: self-hosted; see Searchcraft Core documentation and licensing
+    userMultiplied: false
+  elements:
+  - name: Indexes
+  - name: Document Ingest
+  - name: Search
+  - name: Federated Search
+  - name: Access Key Management
+- id: searchcraft-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Enterprise search software with negotiated terms, deployment, and support.
+    Contact Searchcraft via the enterprise contact form.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Deployment
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

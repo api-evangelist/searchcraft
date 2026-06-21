@@ -1,0 +1,90 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Searchcraft
+providerId: searchcraft
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Search
+- Search as a Service
+- Full Text Search
+- Indexing
+- Developer Tools
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Searchcraft spend. Searchcraft Cloud is a managed
+  search-as-a-service whose cost is driven by the provisioned cluster and the
+  account plan; the Measure API exposes usage metrics explicitly intended for
+  search query tracking and billing. Searchcraft Core is self-hosted, so its
+  cost is the operator's own infrastructure rather than a Searchcraft invoice.
+  Public per-unit prices are not published, so meters below are structural and
+  not reconciled to specific rates.
+notes: >-
+  No public pricing page was available at the created date; reconcile billing
+  meters and rates against the Searchcraft Cloud account console and the
+  /measure/dashboard/usage endpoint.
+sources:
+- https://www.searchcraft.io/
+- https://docs.searchcraft.io/api/measure/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Searchcraft
+serviceCategory: Analytics
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Searchcraft Cloud
+  ServiceCategory: Analytics
+  ProviderName: Searchcraft
+  PublisherName: Searchcraft
+  InvoiceIssuerName: Searchcraft
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: search_queries
+  description: Search and federated search queries executed against the cluster, tracked via the Measure usage dashboard for billing.
+  unit: queries
+  aggregation: sum
+  dimensions:
+  - account
+  - index
+- name: documents_indexed
+  description: Documents ingested and stored across indexes; contributes to storage and provisioned cluster sizing.
+  unit: documents
+  aggregation: sum
+  dimensions:
+  - account
+  - index
+- name: cluster_capacity
+  description: Provisioned Searchcraft Cloud cluster capacity (managed, auto-scaling) underlying throughput and cost.
+  unit: cluster
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Use the Measure API (/measure/dashboard/usage and /summary) to track search query volume and CTR for billing and cost attribution.
+- name: Allocation
+  description: Scope access keys per index/application and tag indexes by workload or team to map search and ingest activity to cost centers.
+- name: Optimization
+  description: Batch document ingestion into fewer requests; prune unused indexes and documents; consider self-hosted Searchcraft Core where infrastructure economics favor it.
+- name: Accountability
+  description: Assign owners per index/federation and review search-query usage and cluster sizing against budget regularly.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
