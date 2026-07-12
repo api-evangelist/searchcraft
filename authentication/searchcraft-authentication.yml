@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/searchcraft-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: SearchcraftKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer"
+    prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword,
+    transaction, and measure writes), and admin (index, federation, and key management). Keys
+    may be scoped to specific indexes via allowed_indexes.'
+  sources:
+  - openapi/searchcraft-openapi.yml

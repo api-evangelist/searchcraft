@@ -126,6 +126,10 @@ apis:
     custom stopword lists used during relevancy tuning. Requires an ingestion-tier
     authentication key.
 common:
+- type: DomainSecurity
+  url: security/searchcraft-domain-security.yml
+- type: Authentication
+  url: authentication/searchcraft-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/searchcraft-inc
 - type: LinkedIn
@@ -140,6 +144,8 @@ common:
   url: rate-limits/searchcraft-rate-limits.yml
 - type: FinOps
   url: finops/searchcraft-finops.yml
+- url: https://searchcraft.io/posts
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
