@@ -126,6 +126,8 @@ apis:
     custom stopword lists used during relevancy tuning. Requires an ingestion-tier
     authentication key.
 common:
+- type: AgenticAccess
+  url: agentic-access/searchcraft-agentic-access.yml
 - type: DomainSecurity
   url: security/searchcraft-domain-security.yml
 - type: Authentication
