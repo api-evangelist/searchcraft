@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft Authentication API
+  description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+- url: https://your-cluster.searchcraft.io
+  description: Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is provisioned a unique cluster host; replace "your-cluster" with your cluster subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+- SearchcraftKey: []
+tags:
+- name: Authentication
+paths:
+  /auth/key:
+    get:
+      operationId: listKeys
+      tags:
+      - Authentication
+      summary: Lists all access keys on the cluster.
+      responses:
+        '200':
+          description: A list of access keys.
+    post:
+      operationId: createKey
+      tags:
+      - Authentication
+      summary: Creates a new access key with the given permissions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKey'
+      responses:
+        '200':
+          description: The access key was created.
+    delete:
+      operationId: deleteAllKeys
+      tags:
+      - Authentication
+      summary: Deletes all access keys on the cluster.
+      responses:
+        '200':
+          description: All access keys were deleted.
+  /auth/key/{key}:
+    parameters:
+    - name: key
+      in: path
+      required: true
+      description: The access key value.
+      schema:
+        type: string
+    get:
+      operationId: getKey
+      tags:
+      - Authentication
+      summary: Retrieves the details of a specific access key.
+      responses:
+        '200':
+          description: The access key details.
+    post:
+      operationId: updateKey
+      tags:
+      - Authentication
+      summary: Updates a specific access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKey'
+      responses:
+        '200':
+          description: The access key was updated.
+    delete:
+      operationId: deleteKey
+      tags:
+      - Authentication
+      summary: Deletes a specific access key.
+      responses:
+        '200':
+          description: The access key was deleted.
+components:
+  schemas:
+    AccessKey:
+      type: object
+      description: An access key definition. The permission field is a bitmask where read is 1, ingest is 15, and admin is 63; keys may be scoped to indexes and associated with organizations, applications, or federations.
+      properties:
+        name:
+          type: string
+        permission:
+          type: integer
+        allowed_indexes:
+          type: array
+          items:
+            type: string
+        federation_name:
+          type: string
+        active:
+          type: boolean
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer" prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword, transaction, and measure writes), and admin (index, federation, and key management). Keys may be scoped to specific indexes via allowed_indexes.'

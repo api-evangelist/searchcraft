@@ -1,0 +1,159 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft Authentication Documents API
+  description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+- url: https://your-cluster.searchcraft.io
+  description: Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is provisioned a unique cluster host; replace "your-cluster" with your cluster subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+- SearchcraftKey: []
+tags:
+- name: Documents
+paths:
+  /index/{index}/documents:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    post:
+      operationId: addDocuments
+      tags:
+      - Documents
+      summary: Adds one or several documents to an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - type: array
+                items:
+                  type: object
+      responses:
+        '200':
+          description: The documents were added.
+    delete:
+      operationId: deleteDocumentsByField
+      tags:
+      - Documents
+      summary: Deletes documents matching a field term.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The matching documents were deleted.
+  /index/{index}/documents/all:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteAllDocuments
+      tags:
+      - Documents
+      summary: Deletes all documents from an index, preserving the index structure.
+      responses:
+        '200':
+          description: All documents were deleted.
+  /index/{index}/documents/query:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteDocumentsByQuery
+      tags:
+      - Documents
+      summary: Deletes documents matching a query condition.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: The matching documents were deleted.
+  /index/{index}/documents/{document_id}:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    - name: document_id
+      in: path
+      required: true
+      description: The internal Searchcraft document id.
+      schema:
+        type: string
+    get:
+      operationId: getDocument
+      tags:
+      - Documents
+      summary: Retrieves a single document by its internal Searchcraft id.
+      responses:
+        '200':
+          description: The document.
+    delete:
+      operationId: deleteDocument
+      tags:
+      - Documents
+      summary: Deletes a specific document by its internal id.
+      responses:
+        '200':
+          description: The document was deleted.
+components:
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
+  schemas:
+    SearchRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          description: A query object, or an array of query objects, expressed in fuzzy, exact, or dynamic mode.
+          oneOf:
+          - type: object
+          - type: array
+            items:
+              type: object
+        limit:
+          type: integer
+          default: 20
+          description: Maximum number of results to return.
+        offset:
+          type: integer
+          default: 0
+          description: Number of results to skip for paging.
+        order_by:
+          type: string
+          description: Field name to order results by.
+        sort:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        occur:
+          type: string
+          enum:
+          - should
+          - must
+          description: Boolean occurrence behavior for the query clause.
+        minimum_number_should_match:
+          type: integer
+          minimum: 0
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer" prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword, transaction, and measure writes), and admin (index, federation, and key management). Keys may be scoped to specific indexes via allowed_indexes.'

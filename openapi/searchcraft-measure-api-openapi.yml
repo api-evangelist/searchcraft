@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft Authentication Measure API
+  description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+- url: https://your-cluster.searchcraft.io
+  description: Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is provisioned a unique cluster host; replace "your-cluster" with your cluster subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+- SearchcraftKey: []
+tags:
+- name: Measure
+paths:
+  /measure/status:
+    get:
+      operationId: measureStatus
+      tags:
+      - Measure
+      summary: Returns whether the measurement system is enabled on this instance.
+      security: []
+      responses:
+        '200':
+          description: The measurement system status.
+  /measure/event:
+    post:
+      operationId: measureEvent
+      tags:
+      - Measure
+      summary: Records a single measurement event.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The event was recorded.
+  /measure/batch:
+    post:
+      operationId: measureBatch
+      tags:
+      - Measure
+      summary: Records multiple measurement events in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+      responses:
+        '200':
+          description: The events were recorded.
+  /measure/dashboard/summary:
+    get:
+      operationId: measureSummary
+      tags:
+      - Measure
+      summary: Returns summary analytics including searches, CTR, active users, and popular terms.
+      responses:
+        '200':
+          description: Summary analytics.
+  /measure/dashboard/conversion:
+    get:
+      operationId: measureConversion
+      tags:
+      - Measure
+      summary: Returns conversion analytics with CTR chart data and session stats.
+      responses:
+        '200':
+          description: Conversion analytics.
+  /measure/dashboard/usage:
+    get:
+      operationId: measureUsage
+      tags:
+      - Measure
+      summary: Returns usage metrics for search query tracking and billing.
+      responses:
+        '200':
+          description: Usage metrics.
+components:
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer" prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword, transaction, and measure writes), and admin (index, federation, and key management). Keys may be scoped to specific indexes via allowed_indexes.'

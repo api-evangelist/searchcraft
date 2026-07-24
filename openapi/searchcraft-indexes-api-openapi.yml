@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft Authentication Indexes API
+  description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+- url: https://your-cluster.searchcraft.io
+  description: Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is provisioned a unique cluster host; replace "your-cluster" with your cluster subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+- SearchcraftKey: []
+tags:
+- name: Indexes
+paths:
+  /index:
+    get:
+      operationId: listIndexes
+      tags:
+      - Indexes
+      summary: Returns a list of all indexes on the cluster.
+      responses:
+        '200':
+          description: A list of indexes.
+    post:
+      operationId: createIndex
+      tags:
+      - Indexes
+      summary: Creates a new index with a schema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSchema'
+      responses:
+        '200':
+          description: The index was created.
+  /index/stats:
+    get:
+      operationId: getAllIndexStats
+      tags:
+      - Indexes
+      summary: Returns document counts for every index on the cluster.
+      responses:
+        '200':
+          description: Stats for all indexes.
+  /index/{index}:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getIndex
+      tags:
+      - Indexes
+      summary: Returns the schema and configuration for a specific index.
+      responses:
+        '200':
+          description: The index schema.
+    put:
+      operationId: replaceIndex
+      tags:
+      - Indexes
+      summary: Replaces the entire configuration of an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSchema'
+      responses:
+        '200':
+          description: The index was replaced.
+    patch:
+      operationId: updateIndex
+      tags:
+      - Indexes
+      summary: Applies a partial configuration update to an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The index was updated.
+    delete:
+      operationId: deleteIndex
+      tags:
+      - Indexes
+      summary: Deletes an index and all of its documents.
+      responses:
+        '200':
+          description: The index was deleted.
+  /index/{index}/stats:
+    parameters:
+    - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getIndexStats
+      tags:
+      - Indexes
+      summary: Returns metadata and document counts for a specific index.
+      responses:
+        '200':
+          description: Stats for the index.
+components:
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
+  schemas:
+    IndexSchema:
+      type: object
+      description: Index definition including name, schema fields, search/index field roles, and optional features such as stopwords and synonyms.
+      properties:
+        name:
+          type: string
+        schema:
+          type: object
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer" prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword, transaction, and measure writes), and admin (index, federation, and key management). Keys may be scoped to specific indexes via allowed_indexes.'

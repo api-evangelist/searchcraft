@@ -1,0 +1,99 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft Authentication Federation API
+  description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+- url: https://your-cluster.searchcraft.io
+  description: Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is provisioned a unique cluster host; replace "your-cluster" with your cluster subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+- SearchcraftKey: []
+tags:
+- name: Federation
+paths:
+  /federation:
+    get:
+      operationId: listFederations
+      tags:
+      - Federation
+      summary: Returns a list of all federations.
+      responses:
+        '200':
+          description: A list of federations.
+    post:
+      operationId: createFederation
+      tags:
+      - Federation
+      summary: Creates a new federation grouping multiple indexes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The federation was created.
+  /federation/{federation_name}:
+    parameters:
+    - $ref: '#/components/parameters/FederationName'
+    get:
+      operationId: getFederation
+      tags:
+      - Federation
+      summary: Returns the details of a specific federation.
+      responses:
+        '200':
+          description: The federation details.
+    put:
+      operationId: updateFederation
+      tags:
+      - Federation
+      summary: Updates a federation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The federation was updated.
+    delete:
+      operationId: deleteFederation
+      tags:
+      - Federation
+      summary: Deletes a federation.
+      responses:
+        '200':
+          description: The federation was deleted.
+  /federation/{federation_name}/stats:
+    parameters:
+    - $ref: '#/components/parameters/FederationName'
+    get:
+      operationId: getFederationStats
+      tags:
+      - Federation
+      summary: Returns statistics for a federation.
+      responses:
+        '200':
+          description: Federation statistics.
+components:
+  parameters:
+    FederationName:
+      name: federation_name
+      in: path
+      required: true
+      description: The name of the federation.
+      schema:
+        type: string
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Searchcraft access key passed directly in the Authorization header (no "Bearer" prefix). Keys are tiered by permission: read (search), ingest (document, synonym, stopword, transaction, and measure writes), and admin (index, federation, and key management). Keys may be scoped to specific indexes via allowed_indexes.'
