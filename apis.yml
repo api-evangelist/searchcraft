@@ -8,7 +8,20 @@ description: Searchcraft is a developer-first search engine and search-as-a-serv
   multiple indexes via federated search, and manage synonyms, stopwords, and usage
   measurement. It ships as a managed cloud service (Searchcraft Cloud) and a
   self-hosted engine (Searchcraft Core).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/searchcraft.png
 tags:
 - Search
 - Search as a Service
@@ -19,112 +32,226 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: searchcraft:searchcraft-index-api
-  name: Searchcraft Index API
-  tags:
-  - Indexes
-  - Schema
-  - Administration
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: searchcraft:searchcraft-authentication-api
+  name: Searchcraft Authentication API
+  description: The Authentication API from Searchcraft — 2 operation(s) for authentication.
   humanURL: https://docs.searchcraft.io/api/index-management/
   baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Authentication
   properties:
-  - url: https://docs.searchcraft.io/api/index-management/
-    type: Documentation
-  - url: openapi/searchcraft-openapi.yml
-    type: OpenAPI
-  - url: collections/searchcraft.postman_collection.json
-    type: PostmanCollection
-  - url: collections/searchcraft.opencollection.json
-    type: OpenCollection
-  description: Create, read, replace, patch, and delete search indexes and their
-    schemas, and retrieve per-index and cluster-wide document statistics. Requires
-    an admin-tier authentication key.
+  - type: OpenAPI
+    url: openapi/searchcraft-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
 - aid: searchcraft:searchcraft-documents-api
-  name: Searchcraft Documents / Ingest API
+  name: Searchcraft Documents API
+  description: The Documents API from Searchcraft — 4 operation(s) for documents.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
   tags:
   - Documents
-  - Ingest
-  - Indexing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.searchcraft.io/api/document-management/
-  baseURL: https://your-cluster.searchcraft.io
   properties:
-  - url: https://docs.searchcraft.io/api/document-management/
-    type: Documentation
-  - url: openapi/searchcraft-openapi.yml
-    type: OpenAPI
-  - url: collections/searchcraft.postman_collection.json
-    type: PostmanCollection
-  - url: collections/searchcraft.opencollection.json
-    type: OpenCollection
-  description: Add one or several documents to an index, retrieve a document by its
-    internal id, and delete documents by id, by field term, by query, or all at
-    once. Write transactions can be committed or rolled back. Requires an
-    ingestion-tier authentication key.
+  - type: OpenAPI
+    url: openapi/searchcraft-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-federation-api
+  name: Searchcraft Federation API
+  description: The Federation API from Searchcraft — 3 operation(s) for federation.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Federation
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-federation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-healthcheck-api
+  name: Searchcraft Healthcheck API
+  description: The Healthcheck API from Searchcraft — 1 operation(s) for healthcheck.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Healthcheck
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-healthcheck-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-indexes-api
+  name: Searchcraft Indexes API
+  description: The Indexes API from Searchcraft — 4 operation(s) for indexes.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-indexes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-measure-api
+  name: Searchcraft Measure API
+  description: The Measure API from Searchcraft — 6 operation(s) for measure.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Measure
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-measure-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
 - aid: searchcraft:searchcraft-search-api
   name: Searchcraft Search API
+  description: The Search API from Searchcraft — 2 operation(s) for search.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
   tags:
   - Search
-  - Full Text Search
-  - Fuzzy Matching
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.searchcraft.io/api/search/
-  baseURL: https://your-cluster.searchcraft.io
   properties:
-  - url: https://docs.searchcraft.io/api/search/
-    type: Documentation
-  - url: openapi/searchcraft-openapi.yml
-    type: OpenAPI
-  - url: collections/searchcraft.postman_collection.json
-    type: PostmanCollection
-  - url: collections/searchcraft.opencollection.json
-    type: OpenCollection
-  description: Run full-text search against an index with fuzzy, exact, or dynamic
-    query modes, Boolean should/must occurrence, facets, ordering, paging, and
-    relevancy tuning. Requires a read-tier authentication key.
-- aid: searchcraft:searchcraft-federated-search-api
-  name: Searchcraft Federated Search API
+  - type: OpenAPI
+    url: openapi/searchcraft-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-stopwords-api
+  name: Searchcraft Stopwords API
+  description: The Stopwords API from Searchcraft — 2 operation(s) for stopwords.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
   tags:
-  - Federated Search
-  - Multi Index
-  - Search
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.searchcraft.io/api/search/
-  baseURL: https://your-cluster.searchcraft.io
+  - Stopwords
   properties:
-  - url: https://docs.searchcraft.io/api/search/
-    type: Documentation
-  - url: openapi/searchcraft-openapi.yml
-    type: OpenAPI
-  - url: collections/searchcraft.postman_collection.json
-    type: PostmanCollection
-  - url: collections/searchcraft.opencollection.json
-    type: OpenCollection
-  description: Query across all indexes grouped into a federation in a single
-    request, and manage federations (create, read, update, delete, stats).
-    Searching requires a read-tier key; federation management requires admin.
-- aid: searchcraft:searchcraft-synonyms-stopwords-api
-  name: Searchcraft Synonyms & Stopwords API
+  - type: OpenAPI
+    url: openapi/searchcraft-stopwords-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-synonyms-api
+  name: Searchcraft Synonyms API
+  description: The Synonyms API from Searchcraft — 2 operation(s) for synonyms.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
   tags:
   - Synonyms
-  - Stopwords
-  - Relevancy
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.searchcraft.io/api/synonyms/
-  baseURL: https://your-cluster.searchcraft.io
   properties:
-  - url: https://docs.searchcraft.io/api/synonyms/
-    type: Documentation
-  - url: openapi/searchcraft-openapi.yml
-    type: OpenAPI
-  - url: collections/searchcraft.postman_collection.json
-    type: PostmanCollection
-  - url: collections/searchcraft.opencollection.json
-    type: OpenCollection
-  description: Manage per-index synonym sets (which apply to fuzzy queries only) and
-    custom stopword lists used during relevancy tuning. Requires an ingestion-tier
-    authentication key.
+  - type: OpenAPI
+    url: openapi/searchcraft-synonyms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-transactions-api
+  name: Searchcraft Transactions API
+  description: The Transactions API from Searchcraft — 2 operation(s) for transactions.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
 common:
 - type: AgenticAccess
   url: agentic-access/searchcraft-agentic-access.yml
