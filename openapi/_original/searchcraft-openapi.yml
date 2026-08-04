@@ -1,0 +1,731 @@
+openapi: 3.0.1
+info:
+  title: Searchcraft API
+  description: >-
+    REST API for the Searchcraft developer search engine. Manage indexes and
+    their schemas, ingest and delete documents, run fuzzy/exact full-text and
+    federated search, and manage synonyms, stopwords, federations, access keys,
+    and usage measurement. Available as the managed Searchcraft Cloud service and
+    the self-hosted Searchcraft Core engine.
+  termsOfService: https://www.searchcraft.io/
+  contact:
+    name: Searchcraft
+    url: https://www.searchcraft.io/
+  version: '1.0'
+servers:
+  - url: https://your-cluster.searchcraft.io
+    description: >-
+      Searchcraft Cloud cluster endpoint. Each Searchcraft Cloud account is
+      provisioned a unique cluster host; replace "your-cluster" with your cluster
+      subdomain. Self-hosted Searchcraft Core instances use their own host.
+security:
+  - SearchcraftKey: []
+paths:
+  /healthcheck:
+    get:
+      operationId: healthcheck
+      tags:
+        - Healthcheck
+      summary: Returns the health status of the Searchcraft server instance.
+      security: []
+      responses:
+        '200':
+          description: The server is healthy.
+  /index:
+    get:
+      operationId: listIndexes
+      tags:
+        - Indexes
+      summary: Returns a list of all indexes on the cluster.
+      responses:
+        '200':
+          description: A list of indexes.
+    post:
+      operationId: createIndex
+      tags:
+        - Indexes
+      summary: Creates a new index with a schema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSchema'
+      responses:
+        '200':
+          description: The index was created.
+  /index/stats:
+    get:
+      operationId: getAllIndexStats
+      tags:
+        - Indexes
+      summary: Returns document counts for every index on the cluster.
+      responses:
+        '200':
+          description: Stats for all indexes.
+  /index/{index}:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getIndex
+      tags:
+        - Indexes
+      summary: Returns the schema and configuration for a specific index.
+      responses:
+        '200':
+          description: The index schema.
+    put:
+      operationId: replaceIndex
+      tags:
+        - Indexes
+      summary: Replaces the entire configuration of an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSchema'
+      responses:
+        '200':
+          description: The index was replaced.
+    patch:
+      operationId: updateIndex
+      tags:
+        - Indexes
+      summary: Applies a partial configuration update to an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The index was updated.
+    delete:
+      operationId: deleteIndex
+      tags:
+        - Indexes
+      summary: Deletes an index and all of its documents.
+      responses:
+        '200':
+          description: The index was deleted.
+  /index/{index}/stats:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getIndexStats
+      tags:
+        - Indexes
+      summary: Returns metadata and document counts for a specific index.
+      responses:
+        '200':
+          description: Stats for the index.
+  /index/{index}/documents:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    post:
+      operationId: addDocuments
+      tags:
+        - Documents
+      summary: Adds one or several documents to an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                - type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: The documents were added.
+    delete:
+      operationId: deleteDocumentsByField
+      tags:
+        - Documents
+      summary: Deletes documents matching a field term.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The matching documents were deleted.
+  /index/{index}/documents/all:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteAllDocuments
+      tags:
+        - Documents
+      summary: Deletes all documents from an index, preserving the index structure.
+      responses:
+        '200':
+          description: All documents were deleted.
+  /index/{index}/documents/query:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteDocumentsByQuery
+      tags:
+        - Documents
+      summary: Deletes documents matching a query condition.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: The matching documents were deleted.
+  /index/{index}/documents/{document_id}:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+      - name: document_id
+        in: path
+        required: true
+        description: The internal Searchcraft document id.
+        schema:
+          type: string
+    get:
+      operationId: getDocument
+      tags:
+        - Documents
+      summary: Retrieves a single document by its internal Searchcraft id.
+      responses:
+        '200':
+          description: The document.
+    delete:
+      operationId: deleteDocument
+      tags:
+        - Documents
+      summary: Deletes a specific document by its internal id.
+      responses:
+        '200':
+          description: The document was deleted.
+  /index/{index}/commit:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    post:
+      operationId: commitTransaction
+      tags:
+        - Transactions
+      summary: Commits the open write transaction for an index.
+      responses:
+        '200':
+          description: The transaction was committed.
+  /index/{index}/rollback:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    post:
+      operationId: rollbackTransaction
+      tags:
+        - Transactions
+      summary: Rolls back the open write transaction for an index.
+      responses:
+        '200':
+          description: The transaction was rolled back.
+  /index/{index}/search:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    post:
+      operationId: search
+      tags:
+        - Search
+      summary: Returns search results that match the query criteria.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /index/{index}/synonyms:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getSynonyms
+      tags:
+        - Synonyms
+      summary: Returns the synonyms configured for an index.
+      responses:
+        '200':
+          description: The synonyms for the index.
+    post:
+      operationId: addSynonyms
+      tags:
+        - Synonyms
+      summary: Adds synonyms to an index using the "synonym:original-term" format.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: The synonyms were added.
+    delete:
+      operationId: deleteSynonyms
+      tags:
+        - Synonyms
+      summary: Deletes specific synonyms from an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: The synonyms were deleted.
+  /index/{index}/synonyms/all:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteAllSynonyms
+      tags:
+        - Synonyms
+      summary: Deletes all synonyms from an index.
+      responses:
+        '200':
+          description: All synonyms were deleted.
+  /index/{index}/stopwords:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    get:
+      operationId: getStopwords
+      tags:
+        - Stopwords
+      summary: Returns the custom stopwords configured for an index.
+      responses:
+        '200':
+          description: The stopwords for the index.
+    post:
+      operationId: addStopwords
+      tags:
+        - Stopwords
+      summary: Adds custom stopwords to an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: The stopwords were added.
+    delete:
+      operationId: deleteStopwords
+      tags:
+        - Stopwords
+      summary: Deletes specific custom stopwords from an index.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: The stopwords were deleted.
+  /index/{index}/stopwords/all:
+    parameters:
+      - $ref: '#/components/parameters/IndexName'
+    delete:
+      operationId: deleteAllStopwords
+      tags:
+        - Stopwords
+      summary: Deletes all custom stopwords from an index.
+      responses:
+        '200':
+          description: All stopwords were deleted.
+  /federation:
+    get:
+      operationId: listFederations
+      tags:
+        - Federation
+      summary: Returns a list of all federations.
+      responses:
+        '200':
+          description: A list of federations.
+    post:
+      operationId: createFederation
+      tags:
+        - Federation
+      summary: Creates a new federation grouping multiple indexes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The federation was created.
+  /federation/{federation_name}:
+    parameters:
+      - $ref: '#/components/parameters/FederationName'
+    get:
+      operationId: getFederation
+      tags:
+        - Federation
+      summary: Returns the details of a specific federation.
+      responses:
+        '200':
+          description: The federation details.
+    put:
+      operationId: updateFederation
+      tags:
+        - Federation
+      summary: Updates a federation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The federation was updated.
+    delete:
+      operationId: deleteFederation
+      tags:
+        - Federation
+      summary: Deletes a federation.
+      responses:
+        '200':
+          description: The federation was deleted.
+  /federation/{federation_name}/stats:
+    parameters:
+      - $ref: '#/components/parameters/FederationName'
+    get:
+      operationId: getFederationStats
+      tags:
+        - Federation
+      summary: Returns statistics for a federation.
+      responses:
+        '200':
+          description: Federation statistics.
+  /federation/{federation_name}/search:
+    parameters:
+      - $ref: '#/components/parameters/FederationName'
+    post:
+      operationId: federatedSearch
+      tags:
+        - Search
+      summary: >-
+        Returns search results across all indexes defined in a federation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Federated search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+  /measure/status:
+    get:
+      operationId: measureStatus
+      tags:
+        - Measure
+      summary: Returns whether the measurement system is enabled on this instance.
+      security: []
+      responses:
+        '200':
+          description: The measurement system status.
+  /measure/event:
+    post:
+      operationId: measureEvent
+      tags:
+        - Measure
+      summary: Records a single measurement event.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The event was recorded.
+  /measure/batch:
+    post:
+      operationId: measureBatch
+      tags:
+        - Measure
+      summary: Records multiple measurement events in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+      responses:
+        '200':
+          description: The events were recorded.
+  /measure/dashboard/summary:
+    get:
+      operationId: measureSummary
+      tags:
+        - Measure
+      summary: >-
+        Returns summary analytics including searches, CTR, active users, and
+        popular terms.
+      responses:
+        '200':
+          description: Summary analytics.
+  /measure/dashboard/conversion:
+    get:
+      operationId: measureConversion
+      tags:
+        - Measure
+      summary: Returns conversion analytics with CTR chart data and session stats.
+      responses:
+        '200':
+          description: Conversion analytics.
+  /measure/dashboard/usage:
+    get:
+      operationId: measureUsage
+      tags:
+        - Measure
+      summary: Returns usage metrics for search query tracking and billing.
+      responses:
+        '200':
+          description: Usage metrics.
+  /auth/key:
+    get:
+      operationId: listKeys
+      tags:
+        - Authentication
+      summary: Lists all access keys on the cluster.
+      responses:
+        '200':
+          description: A list of access keys.
+    post:
+      operationId: createKey
+      tags:
+        - Authentication
+      summary: Creates a new access key with the given permissions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKey'
+      responses:
+        '200':
+          description: The access key was created.
+    delete:
+      operationId: deleteAllKeys
+      tags:
+        - Authentication
+      summary: Deletes all access keys on the cluster.
+      responses:
+        '200':
+          description: All access keys were deleted.
+  /auth/key/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        description: The access key value.
+        schema:
+          type: string
+    get:
+      operationId: getKey
+      tags:
+        - Authentication
+      summary: Retrieves the details of a specific access key.
+      responses:
+        '200':
+          description: The access key details.
+    post:
+      operationId: updateKey
+      tags:
+        - Authentication
+      summary: Updates a specific access key.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessKey'
+      responses:
+        '200':
+          description: The access key was updated.
+    delete:
+      operationId: deleteKey
+      tags:
+        - Authentication
+      summary: Deletes a specific access key.
+      responses:
+        '200':
+          description: The access key was deleted.
+components:
+  securitySchemes:
+    SearchcraftKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Searchcraft access key passed directly in the Authorization header (no
+        "Bearer" prefix). Keys are tiered by permission: read (search), ingest
+        (document, synonym, stopword, transaction, and measure writes), and admin
+        (index, federation, and key management). Keys may be scoped to specific
+        indexes via allowed_indexes.
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
+    FederationName:
+      name: federation_name
+      in: path
+      required: true
+      description: The name of the federation.
+      schema:
+        type: string
+  schemas:
+    SearchRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          description: >-
+            A query object, or an array of query objects, expressed in fuzzy,
+            exact, or dynamic mode.
+          oneOf:
+            - type: object
+            - type: array
+              items:
+                type: object
+        limit:
+          type: integer
+          default: 20
+          description: Maximum number of results to return.
+        offset:
+          type: integer
+          default: 0
+          description: Number of results to skip for paging.
+        order_by:
+          type: string
+          description: Field name to order results by.
+        sort:
+          type: string
+          enum:
+            - asc
+            - desc
+          default: desc
+        occur:
+          type: string
+          enum:
+            - should
+            - must
+          description: Boolean occurrence behavior for the query clause.
+        minimum_number_should_match:
+          type: integer
+          minimum: 0
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        data:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                $ref: '#/components/schemas/Hit'
+            count:
+              type: number
+            time_taken:
+              type: number
+            facets:
+              type: array
+              items:
+                type: object
+    Hit:
+      type: object
+      properties:
+        doc:
+          type: object
+        document_id:
+          type: string
+        score:
+          type: number
+        source_index:
+          type: string
+    IndexSchema:
+      type: object
+      description: >-
+        Index definition including name, schema fields, search/index field
+        roles, and optional features such as stopwords and synonyms.
+      properties:
+        name:
+          type: string
+        schema:
+          type: object
+    AccessKey:
+      type: object
+      description: >-
+        An access key definition. The permission field is a bitmask where read
+        is 1, ingest is 15, and admin is 63; keys may be scoped to indexes and
+        associated with organizations, applications, or federations.
+      properties:
+        name:
+          type: string
+        permission:
+          type: integer
+        allowed_indexes:
+          type: array
+          items:
+            type: string
+        federation_name:
+          type: string
+        active:
+          type: boolean
+tags:
+  - name: Healthcheck
+  - name: Indexes
+  - name: Documents
+  - name: Transactions
+  - name: Search
+  - name: Synonyms
+  - name: Stopwords
+  - name: Federation
+  - name: Measure
+  - name: Authentication

@@ -1,0 +1,32 @@
+{
+  "provider": "searchcraft",
+  "sources": [
+    "searchcraft-authentication-api-openapi.yml",
+    "searchcraft-documents-api-openapi.yml",
+    "searchcraft-federation-api-openapi.yml",
+    "searchcraft-healthcheck-api-openapi.yml",
+    "searchcraft-indexes-api-openapi.yml",
+    "searchcraft-measure-api-openapi.yml",
+    "searchcraft-search-api-openapi.yml",
+    "searchcraft-stopwords-api-openapi.yml",
+    "searchcraft-synonyms-api-openapi.yml",
+    "searchcraft-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "searchcraft-authentication-api-openapi.yml",
+    "searchcraft-documents-api-openapi.yml",
+    "searchcraft-federation-api-openapi.yml",
+    "searchcraft-healthcheck-api-openapi.yml",
+    "searchcraft-indexes-api-openapi.yml",
+    "searchcraft-measure-api-openapi.yml",
+    "searchcraft-search-api-openapi.yml",
+    "searchcraft-stopwords-api-openapi.yml",
+    "searchcraft-synonyms-api-openapi.yml",
+    "searchcraft-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
