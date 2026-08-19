@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Measure API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns whether the measurement system is enabled on this instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/status"
+          },
+          "docs": "Returns whether the measurement system is enabled on this instance."
+        },
+        {
+          "info": {
+            "name": "Records a single measurement event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/measure/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records a single measurement event."
+        },
+        {
+          "info": {
+            "name": "Records multiple measurement events in a single request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/measure/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records multiple measurement events in a single request."
+        },
+        {
+          "info": {
+            "name": "Returns summary analytics including searches, CTR, active users, and popular terms.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/summary"
+          },
+          "docs": "Returns summary analytics including searches, CTR, active users, and popular terms."
+        },
+        {
+          "info": {
+            "name": "Returns conversion analytics with CTR chart data and session stats.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/conversion"
+          },
+          "docs": "Returns conversion analytics with CTR chart data and session stats."
+        },
+        {
+          "info": {
+            "name": "Returns usage metrics for search query tracking and billing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/measure/dashboard/usage"
+          },
+          "docs": "Returns usage metrics for search query tracking and billing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

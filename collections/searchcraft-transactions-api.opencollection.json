@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Transactions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Commits the open write transaction for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/commit",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Commits the open write transaction for an index."
+        },
+        {
+          "info": {
+            "name": "Rolls back the open write transaction for an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/rollback",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Rolls back the open write transaction for an index."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

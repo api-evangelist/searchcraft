@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "5e1783e0-ee0a-47ca-8496-ab89184963aa",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf5039b1-a5eb-4984-b781-d113ed4e3428",
+          "name": "Returns search results that match the query criteria.",
+          "request": {
+            "name": "Returns search results that match the query criteria.",
+            "description": {},
+            "url": {
+              "path": [
+                "index",
+                ":index",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "index",
+                  "description": "(Required) The name of the index."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<object>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"sort\": \"desc\",\n  \"occur\": \"<string>\",\n  \"minimum_number_should_match\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea62d794-eff6-4300-9898-5768e23e00c7",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index",
+                    ":index",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "index",
+                      "description": "(Required) The name of the index."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<object>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"sort\": \"desc\",\n  \"occur\": \"<string>\",\n  \"minimum_number_should_match\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"data\": {\n    \"hits\": [\n      {\n        \"doc\": {},\n        \"document_id\": \"string\",\n        \"score\": 5111.474555262629,\n        \"source_index\": \"string\"\n      },\n      {\n        \"doc\": {},\n        \"document_id\": \"string\",\n        \"score\": 6697.77615499922,\n        \"source_index\": \"string\"\n      }\n    ],\n    \"count\": 3954.220465902044,\n    \"time_taken\": 266.49328824264626\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6338c526-9d0e-45b6-8905-f31ffd377c90",
+          "name": "Returns search results across all indexes defined in a federation.",
+          "request": {
+            "name": "Returns search results across all indexes defined in a federation.",
+            "description": {},
+            "url": {
+              "path": [
+                "federation",
+                ":federation_name",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "federation_name",
+                  "description": "(Required) The name of the federation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<object>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"sort\": \"desc\",\n  \"occur\": \"<string>\",\n  \"minimum_number_should_match\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "516b533a-806f-4a2d-96c7-5b3f8b99bb6b",
+              "name": "Federated search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "federation",
+                    ":federation_name",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "federation_name",
+                      "description": "(Required) The name of the federation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<object>\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"sort\": \"desc\",\n  \"occur\": \"<string>\",\n  \"minimum_number_should_match\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"data\": {\n    \"hits\": [\n      {\n        \"doc\": {},\n        \"document_id\": \"string\",\n        \"score\": 72.80340513878602,\n        \"source_index\": \"string\"\n      },\n      {\n        \"doc\": {},\n        \"document_id\": \"string\",\n        \"score\": 8181.992753678606,\n        \"source_index\": \"string\"\n      }\n    ],\n    \"count\": 1122.420503739594,\n    \"time_taken\": 6712.217777257947\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://your-cluster.searchcraft.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ae66e9c-3ebd-48d2-bf29-3f2af60cfd74",
+    "name": "Searchcraft Authentication Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.\n\nContact Support:\n Name: Searchcraft",
+      "type": "text/plain"
+    }
+  }
+}

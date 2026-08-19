@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Documents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds one or several documents to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or several documents to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes documents matching a field term.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes documents matching a field term."
+        },
+        {
+          "info": {
+            "name": "Deletes all documents from an index, preserving the index structure.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/all",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Deletes all documents from an index, preserving the index structure."
+        },
+        {
+          "info": {
+            "name": "Deletes documents matching a query condition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/query",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes documents matching a query condition."
+        },
+        {
+          "info": {
+            "name": "Retrieves a single document by its internal Searchcraft id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/:document_id",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The internal Searchcraft document id."
+              }
+            ]
+          },
+          "docs": "Retrieves a single document by its internal Searchcraft id."
+        },
+        {
+          "info": {
+            "name": "Deletes a specific document by its internal id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index/documents/:document_id",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The internal Searchcraft document id."
+              }
+            ]
+          },
+          "docs": "Deletes a specific document by its internal id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

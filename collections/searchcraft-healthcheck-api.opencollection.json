@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Healthcheck API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Healthcheck",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the health status of the Searchcraft server instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/healthcheck"
+          },
+          "docs": "Returns the health status of the Searchcraft server instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

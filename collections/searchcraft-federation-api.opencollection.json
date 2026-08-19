@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Federation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Federation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of all federations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation"
+          },
+          "docs": "Returns a list of all federations."
+        },
+        {
+          "info": {
+            "name": "Creates a new federation grouping multiple indexes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/federation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new federation grouping multiple indexes."
+        },
+        {
+          "info": {
+            "name": "Returns the details of a specific federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the federation."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific federation."
+        },
+        {
+          "info": {
+            "name": "Updates a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the federation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a federation."
+        },
+        {
+          "info": {
+            "name": "Deletes a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the federation."
+              }
+            ]
+          },
+          "docs": "Deletes a federation."
+        },
+        {
+          "info": {
+            "name": "Returns statistics for a federation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/federation/:federation_name/stats",
+            "params": [
+              {
+                "name": "federation_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the federation."
+              }
+            ]
+          },
+          "docs": "Returns statistics for a federation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

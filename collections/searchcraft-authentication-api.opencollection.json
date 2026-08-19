@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists all access keys on the cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/auth/key"
+          },
+          "docs": "Lists all access keys on the cluster."
+        },
+        {
+          "info": {
+            "name": "Creates a new access key with the given permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/auth/key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new access key with the given permissions."
+        },
+        {
+          "info": {
+            "name": "Deletes all access keys on the cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/auth/key"
+          },
+          "docs": "Deletes all access keys on the cluster."
+        },
+        {
+          "info": {
+            "name": "Retrieves the details of a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The access key value."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific access key."
+        },
+        {
+          "info": {
+            "name": "Updates a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The access key value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a specific access key."
+        },
+        {
+          "info": {
+            "name": "Deletes a specific access key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/auth/key/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The access key value."
+              }
+            ]
+          },
+          "docs": "Deletes a specific access key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

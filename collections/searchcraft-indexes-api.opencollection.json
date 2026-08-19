@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searchcraft Authentication Indexes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of all indexes on the cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index"
+          },
+          "docs": "Returns a list of all indexes on the cluster."
+        },
+        {
+          "info": {
+            "name": "Creates a new index with a schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://your-cluster.searchcraft.io/index",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new index with a schema."
+        },
+        {
+          "info": {
+            "name": "Returns document counts for every index on the cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/stats"
+          },
+          "docs": "Returns document counts for every index on the cluster."
+        },
+        {
+          "info": {
+            "name": "Returns the schema and configuration for a specific index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Returns the schema and configuration for a specific index."
+        },
+        {
+          "info": {
+            "name": "Replaces the entire configuration of an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the entire configuration of an index."
+        },
+        {
+          "info": {
+            "name": "Applies a partial configuration update to an index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a partial configuration update to an index."
+        },
+        {
+          "info": {
+            "name": "Deletes an index and all of its documents.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-cluster.searchcraft.io/index/:index",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Deletes an index and all of its documents."
+        },
+        {
+          "info": {
+            "name": "Returns metadata and document counts for a specific index.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://your-cluster.searchcraft.io/index/:index/stats",
+            "params": [
+              {
+                "name": "index",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index."
+              }
+            ]
+          },
+          "docs": "Returns metadata and document counts for a specific index."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
