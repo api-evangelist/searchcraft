@@ -25,6 +25,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/searchcraf
 tags:
 - Search
 - Search as a Service
+- Full-Text Search
+- Indexing
+- Developer Tools
+tags_raw:
+- Search
+- Search as a Service
 - Full Text Search
 - Indexing
 - Developer Tools
@@ -104,6 +110,8 @@ apis:
   humanURL: https://docs.searchcraft.io/api/index-management/
   baseURL: https://your-cluster.searchcraft.io
   tags:
+  - Health Check
+  tags_raw:
   - Healthcheck
   properties:
   - type: OpenAPI
@@ -236,6 +244,8 @@ apis:
   humanURL: https://docs.searchcraft.io/api/index-management/
   baseURL: https://your-cluster.searchcraft.io
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
