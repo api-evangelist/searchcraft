@@ -8,6 +8,18 @@ description: Searchcraft is a developer-first search engine and search-as-a-serv
   multiple indexes via federated search, and manage synonyms, stopwords, and usage
   measurement. It ships as a managed cloud service (Searchcraft Cloud) and a
   self-hosted engine (Searchcraft Core).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
