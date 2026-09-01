@@ -37,7 +37,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/searchcraf
 tags:
 - Search
 - Search as a Service
-- Full Text Search
+- Full-Text Search
 - Indexing
 - Developer Tools
 tags_raw:
@@ -122,7 +122,7 @@ apis:
   humanURL: https://docs.searchcraft.io/api/index-management/
   baseURL: https://your-cluster.searchcraft.io
   tags:
-  - Healthcheck
+  - Health Check
   tags_raw:
   - Healthcheck
   properties:
