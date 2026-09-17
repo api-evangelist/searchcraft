@@ -117,30 +117,6 @@ apis:
     url: https://docs.searchcraft.io/api/search/
   - type: Documentation
     url: https://docs.searchcraft.io/api/synonyms/
-- aid: searchcraft:searchcraft-healthcheck-api
-  name: Searchcraft Healthcheck API
-  description: The Healthcheck API from Searchcraft — 1 operation(s) for healthcheck.
-  humanURL: https://docs.searchcraft.io/api/index-management/
-  baseURL: https://your-cluster.searchcraft.io
-  tags:
-  - Health Check
-  tags_raw:
-  - Healthcheck
-  properties:
-  - type: OpenAPI
-    url: openapi/searchcraft-healthcheck-api-openapi.yml
-  - type: Documentation
-    url: https://docs.searchcraft.io/api/index-management/
-  - type: PostmanCollection
-    url: collections/searchcraft.postman_collection.json
-  - type: OpenCollection
-    url: collections/searchcraft.opencollection.json
-  - type: Documentation
-    url: https://docs.searchcraft.io/api/document-management/
-  - type: Documentation
-    url: https://docs.searchcraft.io/api/search/
-  - type: Documentation
-    url: https://docs.searchcraft.io/api/synonyms/
 - aid: searchcraft:searchcraft-indexes-api
   name: Searchcraft Indexes API
   description: The Indexes API from Searchcraft — 4 operation(s) for indexes.
@@ -263,6 +239,28 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/searchcraft-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/index-management/
+  - type: PostmanCollection
+    url: collections/searchcraft.postman_collection.json
+  - type: OpenCollection
+    url: collections/searchcraft.opencollection.json
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/document-management/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/search/
+  - type: Documentation
+    url: https://docs.searchcraft.io/api/synonyms/
+- aid: searchcraft:searchcraft-health-check-api
+  name: Searchcraft Health Check API
+  description: The Health Check API from Searchcraft — 1 operation(s) for health check.
+  humanURL: https://docs.searchcraft.io/api/index-management/
+  baseURL: https://your-cluster.searchcraft.io
+  tags:
+  - Health Check
+  properties:
+  - type: OpenAPI
+    url: openapi/searchcraft-health-check-api-openapi.yml
   - type: Documentation
     url: https://docs.searchcraft.io/api/index-management/
   - type: PostmanCollection
