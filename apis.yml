@@ -123,6 +123,8 @@ apis:
   humanURL: https://docs.searchcraft.io/api/index-management/
   baseURL: https://your-cluster.searchcraft.io
   tags:
+  - Index
+  tags_raw:
   - Indexes
   properties:
   - type: OpenAPI
