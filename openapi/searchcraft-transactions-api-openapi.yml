@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Transactions API
+  title: Searchcraft Transactions API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: commitTransaction
       tags:
       - Transactions
-      summary: Commits the open write transaction for an index.
+      summary: Commits the open write transaction for an index
       responses:
         '200':
           description: The transaction was committed.
@@ -33,7 +33,7 @@ paths:
       operationId: rollbackTransaction
       tags:
       - Transactions
-      summary: Rolls back the open write transaction for an index.
+      summary: Rolls back the open write transaction for an index
       responses:
         '200':
           description: The transaction was rolled back.

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Search API
+  title: Searchcraft Search API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: search
       tags:
       - Search
-      summary: Returns search results that match the query criteria.
+      summary: Returns search results that match the query criteria
       requestBody:
         required: true
         content:
@@ -43,7 +43,7 @@ paths:
       operationId: federatedSearch
       tags:
       - Search
-      summary: Returns search results across all indexes defined in a federation.
+      summary: Returns search results across all indexes defined in a federation
       requestBody:
         required: true
         content:
@@ -74,27 +74,6 @@ components:
       schema:
         type: string
   schemas:
-    SearchResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        data:
-          type: object
-          properties:
-            hits:
-              type: array
-              items:
-                $ref: '#/components/schemas/Hit'
-            count:
-              type: number
-            time_taken:
-              type: number
-            facets:
-              type: array
-              items:
-                type: object
     SearchRequest:
       type: object
       required:
@@ -144,6 +123,27 @@ components:
           type: number
         source_index:
           type: string
+    SearchResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        data:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                $ref: '#/components/schemas/Hit'
+            count:
+              type: number
+            time_taken:
+              type: number
+            facets:
+              type: array
+              items:
+                type: object
   securitySchemes:
     SearchcraftKey:
       type: apiKey

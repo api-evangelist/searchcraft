@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Searchcraft Authentication API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
@@ -20,7 +20,7 @@ paths:
       operationId: listKeys
       tags:
       - Authentication
-      summary: Lists all access keys on the cluster.
+      summary: Lists all access keys on the cluster
       responses:
         '200':
           description: A list of access keys.
@@ -28,7 +28,7 @@ paths:
       operationId: createKey
       tags:
       - Authentication
-      summary: Creates a new access key with the given permissions.
+      summary: Creates a new access key with the given permissions
       requestBody:
         required: true
         content:
@@ -42,7 +42,7 @@ paths:
       operationId: deleteAllKeys
       tags:
       - Authentication
-      summary: Deletes all access keys on the cluster.
+      summary: Deletes all access keys on the cluster
       responses:
         '200':
           description: All access keys were deleted.
@@ -58,7 +58,7 @@ paths:
       operationId: getKey
       tags:
       - Authentication
-      summary: Retrieves the details of a specific access key.
+      summary: Retrieves the details of a specific access key
       responses:
         '200':
           description: The access key details.
@@ -66,7 +66,7 @@ paths:
       operationId: updateKey
       tags:
       - Authentication
-      summary: Updates a specific access key.
+      summary: Updates a specific access key
       requestBody:
         required: true
         content:
@@ -80,7 +80,7 @@ paths:
       operationId: deleteKey
       tags:
       - Authentication
-      summary: Deletes a specific access key.
+      summary: Deletes a specific access key
       responses:
         '200':
           description: The access key was deleted.

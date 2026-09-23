@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Stopwords API
+  title: Searchcraft Stopwords API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: getStopwords
       tags:
       - Stopwords
-      summary: Returns the custom stopwords configured for an index.
+      summary: Returns the custom stopwords configured for an index
       responses:
         '200':
           description: The stopwords for the index.
@@ -30,7 +30,7 @@ paths:
       operationId: addStopwords
       tags:
       - Stopwords
-      summary: Adds custom stopwords to an index.
+      summary: Adds custom stopwords to an index
       requestBody:
         required: true
         content:
@@ -46,7 +46,7 @@ paths:
       operationId: deleteStopwords
       tags:
       - Stopwords
-      summary: Deletes specific custom stopwords from an index.
+      summary: Deletes specific custom stopwords from an index
       requestBody:
         required: true
         content:
@@ -65,7 +65,7 @@ paths:
       operationId: deleteAllStopwords
       tags:
       - Stopwords
-      summary: Deletes all custom stopwords from an index.
+      summary: Deletes all custom stopwords from an index
       responses:
         '200':
           description: All stopwords were deleted.

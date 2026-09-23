@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Documents API
+  title: Searchcraft Documents API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: addDocuments
       tags:
       - Documents
-      summary: Adds one or several documents to an index.
+      summary: Adds one or several documents to an index
       requestBody:
         required: true
         content:
@@ -40,7 +40,7 @@ paths:
       operationId: deleteDocumentsByField
       tags:
       - Documents
-      summary: Deletes documents matching a field term.
+      summary: Deletes documents matching a field term
       requestBody:
         required: true
         content:
@@ -57,7 +57,7 @@ paths:
       operationId: deleteAllDocuments
       tags:
       - Documents
-      summary: Deletes all documents from an index, preserving the index structure.
+      summary: Deletes all documents from an index, preserving the index structure
       responses:
         '200':
           description: All documents were deleted.
@@ -68,7 +68,7 @@ paths:
       operationId: deleteDocumentsByQuery
       tags:
       - Documents
-      summary: Deletes documents matching a query condition.
+      summary: Deletes documents matching a query condition
       requestBody:
         required: true
         content:
@@ -91,7 +91,7 @@ paths:
       operationId: getDocument
       tags:
       - Documents
-      summary: Retrieves a single document by its internal Searchcraft id.
+      summary: Retrieves a single document by its internal Searchcraft id
       responses:
         '200':
           description: The document.
@@ -99,7 +99,7 @@ paths:
       operationId: deleteDocument
       tags:
       - Documents
-      summary: Deletes a specific document by its internal id.
+      summary: Deletes a specific document by its internal id
       responses:
         '200':
           description: The document was deleted.

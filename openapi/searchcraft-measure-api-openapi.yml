@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Measure API
+  title: Searchcraft Measure API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: measureStatus
       tags:
       - Measure
-      summary: Returns whether the measurement system is enabled on this instance.
+      summary: Returns whether the measurement system is enabled on this instance
       security: []
       responses:
         '200':
@@ -30,7 +30,7 @@ paths:
       operationId: measureEvent
       tags:
       - Measure
-      summary: Records a single measurement event.
+      summary: Records a single measurement event
       requestBody:
         required: true
         content:
@@ -45,7 +45,7 @@ paths:
       operationId: measureBatch
       tags:
       - Measure
-      summary: Records multiple measurement events in a single request.
+      summary: Records multiple measurement events in a single request
       requestBody:
         required: true
         content:
@@ -62,7 +62,7 @@ paths:
       operationId: measureSummary
       tags:
       - Measure
-      summary: Returns summary analytics including searches, CTR, active users, and popular terms.
+      summary: Returns summary analytics including searches, CTR, active users, and popular…
       responses:
         '200':
           description: Summary analytics.
@@ -71,7 +71,7 @@ paths:
       operationId: measureConversion
       tags:
       - Measure
-      summary: Returns conversion analytics with CTR chart data and session stats.
+      summary: Returns conversion analytics with CTR chart data and session stats
       responses:
         '200':
           description: Conversion analytics.
@@ -80,7 +80,7 @@ paths:
       operationId: measureUsage
       tags:
       - Measure
-      summary: Returns usage metrics for search query tracking and billing.
+      summary: Returns usage metrics for search query tracking and billing
       responses:
         '200':
           description: Usage metrics.

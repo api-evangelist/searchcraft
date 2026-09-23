@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Searchcraft Authentication Federation API
+  title: Searchcraft Federation API
   description: REST API for the Searchcraft developer search engine. Manage indexes and their schemas, ingest and delete documents, run fuzzy/exact full-text and federated search, and manage synonyms, stopwords, federations, access keys, and usage measurement. Available as the managed Searchcraft Cloud service and the self-hosted Searchcraft Core engine.
   termsOfService: https://www.searchcraft.io/
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: listFederations
       tags:
       - Federation
-      summary: Returns a list of all federations.
+      summary: Returns a list of all federations
       responses:
         '200':
           description: A list of federations.
@@ -28,7 +28,7 @@ paths:
       operationId: createFederation
       tags:
       - Federation
-      summary: Creates a new federation grouping multiple indexes.
+      summary: Creates a new federation grouping multiple indexes
       requestBody:
         required: true
         content:
@@ -45,7 +45,7 @@ paths:
       operationId: getFederation
       tags:
       - Federation
-      summary: Returns the details of a specific federation.
+      summary: Returns the details of a specific federation
       responses:
         '200':
           description: The federation details.
@@ -53,7 +53,7 @@ paths:
       operationId: updateFederation
       tags:
       - Federation
-      summary: Updates a federation.
+      summary: Updates a federation
       requestBody:
         required: true
         content:
@@ -67,7 +67,7 @@ paths:
       operationId: deleteFederation
       tags:
       - Federation
-      summary: Deletes a federation.
+      summary: Deletes a federation
       responses:
         '200':
           description: The federation was deleted.
@@ -78,7 +78,7 @@ paths:
       operationId: getFederationStats
       tags:
       - Federation
-      summary: Returns statistics for a federation.
+      summary: Returns statistics for a federation
       responses:
         '200':
           description: Federation statistics.
