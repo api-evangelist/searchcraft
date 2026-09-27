@@ -106,14 +106,6 @@ paths:
         '200':
           description: Stats for the index.
 components:
-  parameters:
-    IndexName:
-      name: index
-      in: path
-      required: true
-      description: The name of the index.
-      schema:
-        type: string
   schemas:
     IndexSchema:
       type: object
@@ -123,6 +115,14 @@ components:
           type: string
         schema:
           type: object
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
   securitySchemes:
     SearchcraftKey:
       type: apiKey
