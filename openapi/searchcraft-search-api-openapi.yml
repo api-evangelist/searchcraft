@@ -58,21 +58,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchResponse'
 components:
-  parameters:
-    IndexName:
-      name: index
-      in: path
-      required: true
-      description: The name of the index.
-      schema:
-        type: string
-    FederationName:
-      name: federation_name
-      in: path
-      required: true
-      description: The name of the federation.
-      schema:
-        type: string
   schemas:
     SearchRequest:
       type: object
@@ -144,6 +129,21 @@ components:
           type: number
         source_index:
           type: string
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
+    FederationName:
+      name: federation_name
+      in: path
+      required: true
+      description: The name of the federation.
+      schema:
+        type: string
   securitySchemes:
     SearchcraftKey:
       type: apiKey
