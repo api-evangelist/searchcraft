@@ -104,14 +104,6 @@ paths:
         '200':
           description: The document was deleted.
 components:
-  parameters:
-    IndexName:
-      name: index
-      in: path
-      required: true
-      description: The name of the index.
-      schema:
-        type: string
   schemas:
     SearchRequest:
       type: object
@@ -151,6 +143,14 @@ components:
         minimum_number_should_match:
           type: integer
           minimum: 0
+  parameters:
+    IndexName:
+      name: index
+      in: path
+      required: true
+      description: The name of the index.
+      schema:
+        type: string
   securitySchemes:
     SearchcraftKey:
       type: apiKey
